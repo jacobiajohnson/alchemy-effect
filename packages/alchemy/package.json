@@ -160,6 +160,18 @@
       "worker": "./src/Kubernetes/index.ts",
       "import": "./lib/Kubernetes/index.js"
     },
+    "./Neon": {
+      "types": "./lib/Neon/index.d.ts",
+      "bun": "./src/Neon/index.ts",
+      "worker": "./src/Neon/index.ts",
+      "import": "./lib/Neon/index.js"
+    },
+    "./Neon/*": {
+      "types": "./lib/Neon/*/index.d.ts",
+      "bun": "./src/Neon/*/index.ts",
+      "worker": "./src/Neon/*/index.ts",
+      "import": "./lib/Neon/*/index.js"
+    },
     "./Output": {
       "types": "./lib/Output.d.ts",
       "bun": "./src/Output.ts",
@@ -246,6 +258,8 @@
     "@distilled.cloud/cloudflare-runtime": "catalog:",
     "@distilled.cloud/cloudflare-vite-plugin": "catalog:",
     "@distilled.cloud/core": "catalog:",
+    "@distilled.cloud/neon": "catalog:",
+    "pg": "^8.13.0",
     "@effect/vitest": "catalog:",
     "@libsql/client": "catalog:",
     "@octokit/rest": "^22.0.1",
@@ -280,6 +294,7 @@
     "@effect/platform-node": "catalog:",
     "@effect/platform-node-shared": "catalog:",
     "@oxc-project/types": "^0.127.0",
+    "@types/pg": "^8.11.0",
     "@types/aws-lambda": "catalog:",
     "@types/bun": "catalog:",
     "@types/node": "catalog:",

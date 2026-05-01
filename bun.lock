@@ -278,6 +278,7 @@
         "@distilled.cloud/cloudflare-runtime": "catalog:",
         "@distilled.cloud/cloudflare-vite-plugin": "catalog:",
         "@distilled.cloud/core": "catalog:",
+        "@distilled.cloud/neon": "catalog:",
         "@effect/vitest": "catalog:",
         "@libsql/client": "catalog:",
         "@octokit/rest": "^22.0.1",
@@ -298,6 +299,7 @@
         "jszip": "^3.10.1",
         "libsodium-wrappers": "^0.8.3",
         "magic-string": "^0.30.21",
+        "pg": "^8.13.0",
         "picomatch": "^4.0.4",
         "rolldown": "catalog:",
         "sonda": "catalog:",
@@ -315,6 +317,7 @@
         "@types/aws-lambda": "catalog:",
         "@types/bun": "catalog:",
         "@types/node": "catalog:",
+        "@types/pg": "^8.11.0",
         "@types/picomatch": "^4.0.0",
         "@types/react": "^19.2.2",
         "better-auth": "catalog:",
@@ -407,6 +410,7 @@
     "@distilled.cloud/cloudflare-runtime": "0.1.1",
     "@distilled.cloud/cloudflare-vite-plugin": "0.2.0",
     "@distilled.cloud/core": "^0.13.1",
+    "@distilled.cloud/neon": "^0.13.1",
     "@effect/language-service": "4.0.0-beta.48",
     "@effect/platform-bun": "4.0.0-beta.58",
     "@effect/platform-node": "4.0.0-beta.58",
@@ -713,6 +717,8 @@
     "@distilled.cloud/cloudflare-vite-plugin": ["@distilled.cloud/cloudflare-vite-plugin@0.2.0", "", { "dependencies": { "@distilled.cloud/cloudflare-rolldown-plugin": "0.2.0" }, "peerDependencies": { "vite": "^7.0.0 || ^8.0.0" } }, "sha512-yLk+q5EUQthiVU5nIEyF8mL1CujaO8bZp5Z7DQsxKkqwtwKLXapXjDsnknAGwv5xJuEyZG9rbSKNY2cVVRPdZQ=="],
 
     "@distilled.cloud/core": ["@distilled.cloud/core@0.13.1", "", { "dependencies": { "effect": "4.0.0-beta.58" } }, "sha512-CncOtnwY3A8KNwp60C18ws2rKrNgC8GrMSNgiO84KilzAVpiCIoeoGW8xF58u/OVviXKfmQcxUBiNB15WFAZBA=="],
+
+    "@distilled.cloud/neon": ["@distilled.cloud/neon@0.13.1", "", { "dependencies": { "@distilled.cloud/core": "0.13.1", "effect": "4.0.0-beta.58" } }, "sha512-+131EDHxUWBamYpr9s7RR4Rqo6RHb4sfZF/qEKkTtEL9z4QhvRyRO7LmpIaj0NXe1KrrZmQNC5MAwwDWvM8qfA=="],
 
     "@ec-ts/twoslash": ["@ec-ts/twoslash@1.0.0", "", { "dependencies": { "@ec-ts/vfs": "^1.0.0", "twoslash-protocol": "^0.3.6" }, "peerDependencies": { "typescript": "^5.5.0" } }, "sha512-Bp4MCmeDWVRkTkuytPTszan+QGUqeftiasOBadvxSfQpbXYiWsle/N0lMrG+S14bfS9iBzI8mEqdGgd3Fvr3jQ=="],
 
