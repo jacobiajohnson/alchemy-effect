@@ -2,10 +2,10 @@ import * as Layer from "effect/Layer";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import * as Provider from "../Provider.ts";
 import { NeonAuth } from "./Auth/AuthProvider.ts";
-import { NeonBranch, NeonBranchProvider } from "./Branch.ts";
+import { Branch, BranchProvider } from "./Branch.ts";
 import * as Credentials from "./Credentials.ts";
 import { NeonEnvironment, fromProfile } from "./NeonEnvironment.ts";
-import { NeonProject, NeonProjectProvider } from "./Project.ts";
+import { Project, ProjectProvider } from "./Project.ts";
 
 export { NeonEnvironment } from "./NeonEnvironment.ts";
 
@@ -30,10 +30,10 @@ export type ProviderRequirements = Layer.Services<ReturnType<typeof providers>>;
 export const providers = () =>
   Layer.effect(
     Providers,
-    Provider.collection([NeonProject, NeonBranch]),
+    Provider.collection([Project, Branch]),
   ).pipe(
     Layer.provide(
-      Layer.mergeAll(NeonProjectProvider(), NeonBranchProvider()),
+      Layer.mergeAll(ProjectProvider(), BranchProvider()),
     ),
     Layer.provideMerge(Credentials.fromAuthProvider()),
     Layer.provideMerge(fromProfile()),

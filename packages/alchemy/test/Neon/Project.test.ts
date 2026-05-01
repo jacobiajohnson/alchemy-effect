@@ -20,7 +20,7 @@ test.provider("create and delete project with default props", (stack) =>
 
     const project = yield* stack.deploy(
       Effect.gen(function* () {
-        return yield* Neon.NeonProject("DefaultProject");
+        return yield* Neon.Project("DefaultProject");
       }),
     );
 
@@ -62,11 +62,11 @@ test.provider(
 
       const { project, branch } = yield* stack.deploy(
         Effect.gen(function* () {
-          const project = yield* Neon.NeonProject("MigrationProject", {
+          const project = yield* Neon.Project("MigrationProject", {
             migrationsDir,
             importFiles: [seedPath],
           });
-          const branch = yield* Neon.NeonBranch("FeatureBranch", {
+          const branch = yield* Neon.Branch("FeatureBranch", {
             project,
           });
           return { project, branch };

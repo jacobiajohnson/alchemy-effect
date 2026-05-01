@@ -6,19 +6,19 @@ import * as Provider from "../Provider.ts";
 import { Resource } from "../Resource.ts";
 import * as api from "./api.ts";
 import { applyMigrations, runSql } from "./Migrations.ts";
-import type { NeonProject } from "./Project.ts";
+import type { Project } from "./Project.ts";
 import type { Providers } from "./Providers.ts";
 import { listSqlFiles, readSqlFile } from "./SqlFile.ts";
 
 const DEFAULT_MIGRATIONS_TABLE = "neon_migrations";
 
 export type BranchSource =
-  | NeonProject
+  | Project
   | { projectId: string }
-  | { project: NeonProject };
+  | { project: Project };
 
 export type ParentBranchSource =
-  | NeonBranch
+  | Branch
   | { branchId: string }
   | { name: string };
 
@@ -29,7 +29,7 @@ export type BranchEndpointConfig = {
   suspendTimeoutSeconds?: number;
 };
 
-export type NeonBranchProps = {
+export type BranchProps = {
   /**
    * The Neon project (or `{ projectId }`) to create the branch in.
    */
@@ -40,7 +40,7 @@ export type NeonBranchProps = {
    */
   name?: string;
   /**
-   * The parent branch to fork from. Accepts a `NeonBranch`, a
+   * The parent branch to fork from. Accepts a `Branch`, a
    * `{ branchId }`, or `{ name }` to look up by name. Defaults to the
    * project's default branch.
    */
@@ -98,9 +98,9 @@ export type NeonBranchProps = {
   importFiles?: string[];
 };
 
-export type NeonBranch = Resource<
+export type Branch = Resource<
   "Neon.Branch",
-  NeonBranchProps,
+  BranchProps,
   {
     branchId: string;
     branchName: string;
@@ -170,7 +170,7 @@ export type NeonBranch = Resource<
  *
  * @see https://neon.tech/docs/manage/branches/
  */
-export const NeonBranch = Resource<NeonBranch>("Neon.Branch");
+export const Branch = Resource<Branch>("Neon.Branch");
 
 const resolveProjectId = (source: BranchSource): string => {
   if ("projectId" in source && source.projectId) {
@@ -180,7 +180,7 @@ const resolveProjectId = (source: BranchSource): string => {
     return source.project.projectId as unknown as string;
   }
   throw new Error(
-    "Invalid Neon project source: must be a NeonProject, { projectId }, or { project }",
+    "Invalid Neon project source: must be a Project, { projectId }, or { project }",
   );
 };
 
@@ -244,9 +244,9 @@ const fetchConnection = (
     return { uri: direct.uri, pooled: pooled.uri };
   });
 
-export const NeonBranchProvider = () =>
+export const BranchProvider = () =>
   Provider.effect(
-    NeonBranch,
+    Branch,
     Effect.gen(function* () {
       const rootDir = process.cwd();
 

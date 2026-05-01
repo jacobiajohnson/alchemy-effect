@@ -28,7 +28,7 @@ const DEFAULT_MIGRATIONS_TABLE = "neon_migrations";
 const DEFAULT_REGION: NeonRegion = "aws-us-east-1";
 const DEFAULT_PG_VERSION: NeonPgVersion = 17;
 
-export type NeonProjectProps = {
+export type ProjectProps = {
   /**
    * Name of the project. If omitted, a unique name is generated from
    * `${app}-${stage}-${id}`.
@@ -93,9 +93,9 @@ export type NeonProjectProps = {
   importFiles?: string[];
 };
 
-export type NeonProject = Resource<
+export type Project = Resource<
   "Neon.Project",
-  NeonProjectProps,
+  ProjectProps,
   {
     projectId: string;
     projectName: string;
@@ -158,7 +158,7 @@ export type NeonProject = Resource<
  *
  * @see https://neon.tech/docs/manage/projects/
  */
-export const NeonProject = Resource<NeonProject>("Neon.Project");
+export const Project = Resource<Project>("Neon.Project");
 
 const getRoleName = (creation: api.CreateProjectOutput) =>
   creation.roles.find((r) => !r.protected)?.name ?? creation.roles[0]?.name;
@@ -198,9 +198,9 @@ const resolveConnection = (
     return { uri: direct.uri, pooled: pooled.uri };
   });
 
-export const NeonProjectProvider = () =>
+export const ProjectProvider = () =>
   Provider.effect(
-    NeonProject,
+    Project,
     Effect.gen(function* () {
       const rootDir = process.cwd();
 
